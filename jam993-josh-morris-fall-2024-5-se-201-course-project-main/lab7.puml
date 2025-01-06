@@ -1,0 +1,52 @@
+@startuml
+class CreateCommandValidator {
++ boolean validate(String)
+}
+
+abstract class Account {
+# double dollars
+# double apr
+# String id
++ double getBalance()
++ void addDollars(double)
++ void minusDollars(double)
++ double getAprValue()
++ String getId()
+}
+
+
+class Savings {
+}
+class DepositCommandValidator {
++ boolean validate(String)
+}
+
+class Bank {
+- Map<String,Account> accounts
++ Map<String,Account> getAccounts()
++ void addAccount(double,double,String,String)
++ Account retrieveAccount(String)
++ void addDollars(double,String)
++ void minusDollars(double,String)
++ boolean accountExistsById(String)
+}
+
+
+class CD {
+}
+class Checking {
+}
+class CommandValidator {
++ Bank bank
++ boolean validate(String)
+}
+
+
+
+
+CommandValidator <|-- CreateCommandValidator
+Account <|-- Savings
+CommandValidator <|-- DepositCommandValidator
+Account <|-- CD
+Account <|-- Checking
+@enduml
